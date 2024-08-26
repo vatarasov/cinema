@@ -1,0 +1,12 @@
+{
+  "type" : "record",
+  "name" : "OrderEventDto",
+  "namespace" : "generated.ru.vtarasov.cinema.avro.dto",
+  "fields" : [ {
+    "name" : "film",
+    "type" : "string"
+  }, {
+    "name" : "price",
+    "type" : "int"
+  } ]
+}

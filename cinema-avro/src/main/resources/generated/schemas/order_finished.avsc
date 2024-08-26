@@ -1,0 +1,9 @@
+{
+  "type" : "record",
+  "name" : "OrderFinishedDto",
+  "namespace" : "generated.ru.vtarasov.cinema.avro.dto",
+  "fields" : [ {
+    "name" : "state",
+    "type" : "string"
+  } ]
+}
