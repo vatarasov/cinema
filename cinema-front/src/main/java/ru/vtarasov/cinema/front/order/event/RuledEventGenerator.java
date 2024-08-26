@@ -1,11 +1,14 @@
 package ru.vtarasov.cinema.front.order.event;
 
-import java.util.Random;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.vtarasov.cinema.front.util.RandomService;
 
+@RequiredArgsConstructor
 @Service
 public class RuledEventGenerator implements EventGenerator {
+    private final RandomService randomService;
+
     @Override
     public EventType nextEvent(EventType currentEvent) {
         return switch (currentEvent) {
@@ -15,6 +18,6 @@ public class RuledEventGenerator implements EventGenerator {
     }
 
     private EventType nextAfterOrderCreated() {
-        return new Random().nextBoolean() ? EventType.ORDER_PAID : EventType.ORDER_CANCELLED;
+        return randomService.nextBoolean() ? EventType.ORDER_PAID : EventType.ORDER_CANCELLED;
     }
 }
