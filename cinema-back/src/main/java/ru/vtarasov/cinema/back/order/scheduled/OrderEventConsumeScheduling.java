@@ -1,12 +1,14 @@
 package ru.vtarasov.cinema.back.order.scheduled;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import ru.vtarasov.cinema.back.order.consumer.LogOrderEventConsumer;
 
 @RequiredArgsConstructor
 @Service
+@Profile("!test")
 public class OrderEventConsumeScheduling {
     private final LogOrderEventConsumer logOrderEventConsumer;
 

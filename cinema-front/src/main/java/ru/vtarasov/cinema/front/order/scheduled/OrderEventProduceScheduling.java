@@ -2,6 +2,7 @@ package ru.vtarasov.cinema.front.order.scheduled;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -10,6 +11,7 @@ import ru.vtarasov.cinema.front.order.producer.OrderEventProducer;
 
 @RequiredArgsConstructor
 @Service
+@Profile("!test")
 public class OrderEventProduceScheduling {
     private final OrderEventProducer orderEventProducer;
     private volatile boolean appStarted;

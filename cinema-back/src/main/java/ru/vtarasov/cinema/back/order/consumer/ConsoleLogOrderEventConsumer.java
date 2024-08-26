@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.stereotype.Service;
+import ru.vtarasov.cinema.back.util.BackLogger;
 
 @Slf4j
 @Service
@@ -20,11 +21,12 @@ public class ConsoleLogOrderEventConsumer implements LogOrderEventConsumer {
     private static final String ORDER_FINISHED_TEMPLATE = "state: %s";
 
     private final KafkaConsumer<String, Serializable> kafkaConsumer;
+    private final BackLogger backLogger;
 
     @Override
     public void log() {
         kafkaConsumer.poll(POLL_TIMEOUT).forEach(
-                record -> log.info("Order event received: {} = {}", record.key(), getStringEventValue(record.value()))
+                record -> backLogger.info("Order event received: {} = {}", record.key(), getStringEventValue(record.value()))
         );
         kafkaConsumer.commitSync();
     }
